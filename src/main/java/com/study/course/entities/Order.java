@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.study.course.entities.enums.OrderStatus;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -30,7 +31,8 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private User client;
 
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'",
+            timezone = "GMT")
     private Integer orderStatus;
 
     @OneToMany(mappedBy = "id.order")
